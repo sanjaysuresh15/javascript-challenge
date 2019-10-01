@@ -8,8 +8,6 @@
 
 
 
-// set up columns to call
-// let columnarray = ["datetime","city", "state", "country", "shape", "durationMinutes", "comments"]  
 
 
 
@@ -24,4 +22,32 @@
       });
     }); 
 
+let button = d3.select("#filter-btn");
+
+button.on("click", function() {
+  tbody.html("");
+      // Select the input element and get the raw HTML node
+  let inputElement = d3.select("#datetime");
+    
+      // Get the value property of the input element
+  let inputValue = inputElement.property("value");
+    
+    console.log(inputValue);
+    console.log(data);
+    
+  let filteredData = data.filter(data => data.datetime === inputValue);
+   
+  filteredData.forEach(function(UFO) {
+    console.log(UFO);
+    let row = tbody.append("tr");
+    Object.entries(UFO).forEach(function([key, value]) {
+      console.log(key, value);
+      let cell = row.append("td");
+      cell.text(value);
+    });
+  }); 
+    console.log(filteredData);
+    
+
+  })
 
